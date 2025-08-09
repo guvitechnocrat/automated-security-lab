@@ -1,0 +1,29 @@
+{
+  "info": { "name": "Vuln API Tests", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+  "item": [
+    {
+      "name": "Get items",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "http://localhost:5000/api/items", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","items"] }
+      }
+    },
+    {
+      "name": "Create item",
+      "request": {
+        "method": "POST",
+        "header": [ { "key":"Content-Type", "value":"application/json" } ],
+        "body": { "mode":"raw", "raw": "{\"name\":\"test-item\"}" },
+        "url": {"raw":"http://localhost:5000/api/items", "protocol":"http", "host":["localhost"], "port":"5000", "path":["api","items"]}
+      }
+    },
+    {
+      "name": "XSS test (greet)",
+      "request": {
+        "method": "GET",
+        "url": { "raw": "http://localhost:5000/greet?name=<script>alert(1)</script>" }
+      }
+    }
+  ]
+}
