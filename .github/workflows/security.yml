@@ -18,6 +18,13 @@ jobs:
       - name: Run container
         run: docker run -d --name vuln -p 5000:5000 vuln-api:ci
 
+      - name: Get IP Addresses
+        id: ip
+        uses: candidob/get-runner-ip@v1.0.0
+      - name: See IP Addresses
+        run: |
+          echo ${{ steps.ip.outputs.ipv4 }}
+
       - name: Wait for app
         run: |
           for i in {1..10}; do curl -sS http://localhost:5000/ || sleep 3; done
